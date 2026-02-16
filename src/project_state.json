@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a realtime collaborative whiteboard web app with a catchy UI, organized as a single downloadable project folder suitable for GitHub publishing, and provide a working preview.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-full-whiteboard-drawing-experience-in-the-react-ui-including-freehand-pen-variable-stroke-size-eraser-basic-shapes-rectangle-ellipse-line-arrow-text-tool-sticky-notes-select-move-resize-elements-undo-redo-zoom-in-out-and-pan",
+      "title": "Create a full whiteboard drawing experience in the React UI, including: freehand pen (variable stroke size), eraser, basic shapes (rectangle, ellipse, line/arrow), text tool, sticky notes, select/move/resize elements, undo/redo, zoom in/out, and pan.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-collaborative-board-sync-using-the-internet-computer-backend-canister-so-multiple-users-can-work-on-the-same-board-with-near-real-time-updates-polling-based-updates-no-websockets-provide-a-board-share-code-link-mechanism-to-join-the-same-board",
+      "title": "Implement collaborative board sync using the Internet Computer backend canister so multiple users can work on the same board with near-real-time updates (polling-based updates, no WebSockets). Provide a board “Share Code / Link” mechanism to join the same board.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-internet-identity-login-and-identity-aware-collaboration-features-show-the-signed-in-user-show-a-simple-participants-list-per-board-and-attribute-updates-to-the-user-display-name-fallback-if-no-profile-is-set",
+      "title": "Add Internet Identity login and identity-aware collaboration features: show the signed-in user, show a simple participants list per board, and attribute updates to the user (display name fallback if no profile is set).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-board-management-ux-a-home-screen-with-create-join-board-a-recent-boards-list-local-to-the-browser-and-an-in-board-top-bar-with-board-title-rename-share-button-and-export-actions",
+      "title": "Add board management UX: a home screen with create/join board, a recent boards list (local to the browser), and an in-board top bar with board title rename, share button, and export actions.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-deliver-a-cohesive-catchy-visual-theme-and-apply-it-consistently-across-the-app-home-screen-whiteboard-toolbars-panels-dialogs-theme-must-not-rely-on-a-default-unstyled-look-use-a-distinctive-palette-avoid-blue-purple-by-default-strong-typography-hierarchy-and-polished-spacing",
+      "title": "Deliver a cohesive, catchy visual theme and apply it consistently across the app (home screen, whiteboard, toolbars, panels, dialogs). Theme must not rely on a default/unstyled look. Use a distinctive palette (avoid blue/purple by default), strong typography hierarchy, and polished spacing.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-working-preview-in-the-form-of-a-fully-runnable-project-in-a-single-repository-folder-with-clear-scripts-and-documentation-local-dev-run-steps-local-ic-replica-deploy-steps-and-production-build-steps-suitable-for-pushing-to-github-and-publishing",
+      "title": "Provide a “working preview” in the form of a fully runnable project in a single repository folder with clear scripts and documentation: local dev run steps, local IC replica deploy steps, and production build steps suitable for pushing to GitHub and publishing.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-organize-frontend-code-into-clear-folders-e-g-pages-components-canvas-tools-state-api-and-backend-code-into-well-named-modules-if-needed-while-respecting-the-platform-s-immutable-frontend-paths-ensure-the-user-can-download-a-single-folder-containing-all-files-needed-to-push-to-github",
+      "title": "Organize frontend code into clear folders (e.g., pages, components, canvas, tools, state, api) and backend code into well-named modules (if needed) while respecting the platform’s immutable frontend paths. Ensure the user can download a single folder containing all files needed to push to GitHub.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-board-background-template-feature-with-the-following-modes-blank-dots-grid-and-lines-the-selected-background-must-be-stored-as-part-of-the-board-s-metadata-and-loaded-for-all-collaborators-when-they-open-join-the-board",
+      "title": "Add a board background/template feature with the following modes: Blank, Dots, Grid, and Lines. The selected background must be stored as part of the board’s metadata and loaded for all collaborators when they open/join the board.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-background-rendering-on-the-canvas-for-blank-dots-grid-lines-the-background-must-render-behind-all-elements-and-respect-the-viewport-pan-zoom-so-the-pattern-appears-anchored-to-the-world-space-i-e-it-doesn-t-slide-relative-to-drawings-when-panning-zooming",
+      "title": "Implement background rendering on the canvas for Blank/Dots/Grid/Lines. The background must render behind all elements and respect the viewport pan/zoom so the pattern appears “anchored” to the world space (i.e., it doesn’t slide relative to drawings when panning/zooming).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-create-new-board-modal-that-lets-the-user-enter-a-board-name-and-select-a-template-blank-dots-grid-lines-matching-the-intent-of-the-uploaded-screenshots-template-tiles-primary-create-board-action-creating-the-board-navigates-into-that-board-with-the-selected-template-applied",
+      "title": "Add a “Create New Board” modal that lets the user enter a board name and select a template (Blank / Dots / Grid / Lines), matching the intent of the uploaded screenshots (template tiles + primary “Create Board” action). Creating the board navigates into that board with the selected template applied.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-in-board-ui-control-to-switch-the-board-background-between-blank-dots-grid-lines-for-example-in-the-top-bar-overflow-menu-or-a-small-settings-dropdown-changing-it-updates-the-board-metadata-so-all-collaborators-converge-to-the-new-background",
+      "title": "Add an in-board UI control to switch the board background between Blank/Dots/Grid/Lines (for example in the top bar overflow menu or a small settings dropdown). Changing it updates the board metadata so all collaborators converge to the new background.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a realtime collaborative whiteboard web app (drawing, collaboration, and core whiteboard tools).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Design a catchy, polished UI for the whiteboard app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Provide a clear project folder/file structure so the app can be downloaded as a single folder and pushed to GitHub for publishing.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Provide a working preview/demo of the app (runnable build or deployable preview).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Implement backend data model and APIs in the single Motoko actor to support: creating boards, reading board snapshots, appending operations/events, incremental sync by version, and presence/heartbeat updates. Persist board state in canister stable memory across upgrades (no migration unless needed later).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add whiteboard background modes (blank, dotted grid, lined/grid) with an in-app toggle.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Update the backend API and data model to include board metadata for background mode (and return it in snapshot/changes responses) without breaking existing board operations syncing.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Collaborative whiteboard app with near-real-time sync, Internet Identity, and polished UI",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,134 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Whiteboard background templates with create-board picker and in-board toggle",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "summary": "Load and apply a per-board backgroundMode (blank/dots/grid/lines) from board metadata so collaborators see the same mode on open/join.",
+      "acceptanceCriteria": [
+        "A board has a backgroundMode value that is one of: \"blank\" | \"dots\" | \"grid\" | \"lines\".",
+        "When two different clients open the same board, both see the same background mode.",
+        "Changing the background mode persists for the board and remains after refresh/reload."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/state/boardStore.ts",
+          "operation": "modify",
+          "description": "Add board-level UI state for backgroundMode and actions to set/update it (separate from element operations), so the selected mode can be stored locally and rendered consistently."
+        },
+        {
+          "path": "frontend/src/api/useBoardSnapshot.ts",
+          "operation": "modify",
+          "description": "Update snapshot loading to read the board background from the snapshot response and set backgroundMode in the store; when creating a missing board, pass an initial background choice (defaulting to blank) so metadata is created consistently."
+        },
+        {
+          "path": "frontend/src/api/useBoardPollingSync.ts",
+          "operation": "modify",
+          "description": "Extend polling sync to apply background changes from the server response (in addition to operations/version), updating the store when the backgroundMode changes so collaborators converge via polling."
+        },
+        {
+          "path": "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+          "operation": "modify",
+          "description": "Read backgroundMode from the board store and pass it into canvas rendering so the loaded board metadata is reflected visually for all users."
+        },
+        {
+          "path": "frontend/src/api/boardApi.ts",
+          "operation": "modify",
+          "description": "Align the frontend backend-call wrapper with the current backend interface for board creation and background operations (createBoard expects a background argument; also expose updateBoardBackground if needed by UI)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Render Blank/Dots/Grid/Lines backgrounds behind all elements, anchored to world-space during pan/zoom.",
+      "acceptanceCriteria": [
+        "Blank mode renders a clean solid background.",
+        "Dots mode renders an evenly-spaced dot pattern.",
+        "Grid mode renders evenly-spaced square grid lines.",
+        "Lines mode renders evenly-spaced horizontal ruled lines.",
+        "When the user pans/zooms, the background pattern stays aligned with the drawing world coordinates (no drifting relative to existing strokes/shapes)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/canvas/render.ts",
+          "operation": "modify",
+          "description": "Add background rendering before elements based on backgroundMode (blank/dots/grid/lines), computing pattern offsets from the current viewport so the pattern is anchored to world coordinates under pan/zoom."
+        },
+        {
+          "path": "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+          "operation": "modify",
+          "description": "Update renderCanvas invocation to provide backgroundMode along with elements/viewport so the renderer can draw the correct template behind all elements."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add a Create New Board modal with board name input and template tile picker (Blank/Dots/Grid/Lines), then navigate into the new board with that template applied.",
+      "acceptanceCriteria": [
+        "Clicking “Create Board” on the home screen opens a modal with: board name input + template selection tiles (Blank/Dots/Grid/Lines) + Cancel + Create Board.",
+        "Create Board is disabled until a valid board name is entered (non-empty after trim).",
+        "After creating, the app navigates to the new board and the selected background is visible immediately.",
+        "Recent boards list continues to function."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/board/CreateBoardDialog.tsx",
+          "operation": "create",
+          "description": "Implement the Create New Board modal UI (name input, template selection tiles, Cancel/Create actions). Use shadcn-ui Dialog/Input/Button components to match the intended layout; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire the CreateBoardDialog into the existing HomePage 'Create Board' action to open the modal and, on success, generate a new boardId and navigate to that board with the chosen name + template; keep the recent boards section working."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Extend navigation state to pass optional create-board initialization (initial title + initial background template) from HomePage into BoardPage, without adding new routes."
+        },
+        {
+          "path": "frontend/src/pages/BoardPage.tsx",
+          "operation": "modify",
+          "description": "Accept optional initialTitle/initialBackground props, initialize the displayed boardTitle accordingly, and pass initialBackground into snapshot creation/loading so the new board opens with the selected template immediately."
+        },
+        {
+          "path": "frontend/src/api/useBoardSnapshot.ts",
+          "operation": "modify",
+          "description": "Support an optional initialBackground parameter so when a board does not exist yet, creation uses the selected template; ensure the returned snapshot background is applied to the store on load."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Add an in-board control to switch the shared board background template and sync it via polling without affecting existing elements.",
+      "acceptanceCriteria": [
+        "A user can change the background mode from within the board UI.",
+        "The change is persisted to the backend and is reflected on another client after sync/polling.",
+        "Switching background does not modify or delete existing whiteboard elements."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/board/BoardTopBar.tsx",
+          "operation": "modify",
+          "description": "Add a background/template selector control (e.g., dropdown/overflow menu) to switch between Blank/Dots/Grid/Lines. Use shadcn-ui DropdownMenu to present the options; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/api/boardApi.ts",
+          "operation": "modify",
+          "description": "Expose a typed frontend call for updating the board background (wrapping the backend capability) so the top bar control can persist backgroundMode changes."
+        },
+        {
+          "path": "frontend/src/state/boardStore.ts",
+          "operation": "modify",
+          "description": "Add an action to set backgroundMode immediately on user selection (optimistic UI), ensuring it does not touch element state/history."
+        },
+        {
+          "path": "frontend/src/api/useBoardPollingSync.ts",
+          "operation": "modify",
+          "description": "Ensure backgroundMode changes made by any collaborator are observed and applied during polling sync, so other clients update their background without modifying existing whiteboard elements."
+        }
+      ]
+    }
+  ]
+}

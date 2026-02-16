@@ -1,0 +1,89 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-board-background-template-feature-with-the-following-modes-blank-dots-grid-and-lines-the-selected-background-must-be-stored-as-part-of-the-board-s-metadata-and-loaded-for-all-collaborators-when-they-open-join-the-board",
+      "featureTitle": "Add a board background/template feature with the following modes: Blank, Dots, Grid, and Lines. The selected background must be stored as part of the board’s metadata and loaded for all collaborators when they open/join the board.",
+      "files": [
+        "frontend/src/api/boardApi.ts",
+        "frontend/src/api/useBoardPollingSync.ts",
+        "frontend/src/api/useBoardSnapshot.ts",
+        "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+        "frontend/src/state/boardStore.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-background-rendering-on-the-canvas-for-blank-dots-grid-lines-the-background-must-render-behind-all-elements-and-respect-the-viewport-pan-zoom-so-the-pattern-appears-anchored-to-the-world-space-i-e-it-doesn-t-slide-relative-to-drawings-when-panning-zooming",
+      "featureTitle": "Implement background rendering on the canvas for Blank/Dots/Grid/Lines. The background must render behind all elements and respect the viewport pan/zoom so the pattern appears “anchored” to the world space (i.e., it doesn’t slide relative to drawings when panning/zooming).",
+      "files": [
+        "frontend/src/canvas/render.ts",
+        "frontend/src/components/whiteboard/WhiteboardCanvas.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-create-new-board-modal-that-lets-the-user-enter-a-board-name-and-select-a-template-blank-dots-grid-lines-matching-the-intent-of-the-uploaded-screenshots-template-tiles-primary-create-board-action-creating-the-board-navigates-into-that-board-with-the-selected-template-applied",
+      "featureTitle": "Add a “Create New Board” modal that lets the user enter a board name and select a template (Blank / Dots / Grid / Lines), matching the intent of the uploaded screenshots (template tiles + primary “Create Board” action). Creating the board navigates into that board with the selected template applied.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/api/useBoardSnapshot.ts",
+        "frontend/src/components/board/CreateBoardDialog.tsx",
+        "frontend/src/pages/BoardPage.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-in-board-ui-control-to-switch-the-board-background-between-blank-dots-grid-lines-for-example-in-the-top-bar-overflow-menu-or-a-small-settings-dropdown-changing-it-updates-the-board-metadata-so-all-collaborators-converge-to-the-new-background",
+      "featureTitle": "Add an in-board UI control to switch the board background between Blank/Dots/Grid/Lines (for example in the top bar overflow menu or a small settings dropdown). Changing it updates the board metadata so all collaborators converge to the new background.",
+      "files": [
+        "frontend/src/api/boardApi.ts",
+        "frontend/src/api/useBoardPollingSync.ts",
+        "frontend/src/components/board/BoardTopBar.tsx",
+        "frontend/src/state/boardStore.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

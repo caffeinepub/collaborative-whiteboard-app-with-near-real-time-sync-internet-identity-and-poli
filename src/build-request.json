@@ -1,0 +1,124 @@
+{
+  "kind": "build_request",
+  "title": "Add whiteboard background templates (Blank / Dots / Grid / Lines) with create-board template picker and in-board toggle",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "text": "Add a board background/template feature with the following modes: Blank, Dots, Grid, and Lines. The selected background must be stored as part of the board’s metadata and loaded for all collaborators when they open/join the board.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "give more features like dot s grid lines blank etc"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A board has a backgroundMode value that is one of: \"blank\" | \"dots\" | \"grid\" | \"lines\".",
+        "When two different clients open the same board, both see the same background mode.",
+        "Changing the background mode persists for the board and remains after refresh/reload."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Update the backend API and data model to include board metadata for background mode (and return it in snapshot/changes responses) without breaking existing board operations syncing.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "give more features like dot s grid lines blank etc"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes snapshot (and incremental changes if applicable) that includes the board background mode in addition to operations and version.",
+        "If a board was created before this change, it defaults to background mode \"blank\" when fetched.",
+        "Existing drawing/collaboration features continue working unchanged (operations append, snapshot load, polling sync)."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Implement background rendering on the canvas for Blank/Dots/Grid/Lines. The background must render behind all elements and respect the viewport pan/zoom so the pattern appears “anchored” to the world space (i.e., it doesn’t slide relative to drawings when panning/zooming).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "give more features like dot s grid lines blank etc"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Blank mode renders a clean solid background.",
+        "Dots mode renders an evenly-spaced dot pattern.",
+        "Grid mode renders evenly-spaced square grid lines.",
+        "Lines mode renders evenly-spaced horizontal ruled lines.",
+        "When the user pans/zooms, the background pattern stays aligned with the drawing world coordinates (no drifting relative to existing strokes/shapes)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Add a “Create New Board” modal that lets the user enter a board name and select a template (Blank / Dots / Grid / Lines), matching the intent of the uploaded screenshots (template tiles + primary “Create Board” action). Creating the board navigates into that board with the selected template applied.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "give more features like dot s grid lines blank etc"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking “Create Board” on the home screen opens a modal with: board name input + template selection tiles (Blank/Dots/Grid/Lines) + Cancel + Create Board.",
+        "Create Board is disabled until a valid board name is entered (non-empty after trim).",
+        "After creating, the app navigates to the new board and the selected background is visible immediately.",
+        "Recent boards list continues to function."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Add an in-board UI control to switch the board background between Blank/Dots/Grid/Lines (for example in the top bar overflow menu or a small settings dropdown). Changing it updates the board metadata so all collaborators converge to the new background.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "give more features like dot s grid lines blank etc"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can change the background mode from within the board UI.",
+        "The change is persisted to the backend and is reflected on another client after sync/polling.",
+        "Switching background does not modify or delete existing whiteboard elements."
+      ]
+    }
+  ],
+  "constraints": [
+    "Respect the single-actor backend architecture; keep Motoko logic in backend/main.mo (generate backend/migration.mo only if an upgrade requires state migration).",
+    "Do not edit files under frontend/src/components/ui or other immutable frontend paths listed in SYSTEM_CONTEXT; compose existing UI components instead.",
+    "No WebSockets; continue using polling-based synchronization."
+  ],
+  "nonGoals": [
+    "Adding new drawing tools beyond the existing toolset.",
+    "Adding external databases or third-party realtime services.",
+    "Implementing complex per-user background preferences (background is per-board, shared by collaborators)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

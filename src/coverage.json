@@ -1,0 +1,118 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-16T07:45:45.211Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "Update the backend API and data model to include board metadata for background mode (and return it in snapshot/changes responses) without breaking existing board operations syncing.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Implement background rendering on the canvas for Blank/Dots/Grid/Lines. The background must render behind all elements and respect the viewport pan/zoom so the pattern appears “anchored” to the world space (i.e., it doesn’t slide relative to drawings when panning/zooming).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/canvas/render.ts",
+          "frontend/src/components/whiteboard/WhiteboardCanvas.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/canvas/render.ts",
+          "frontend/src/components/whiteboard/WhiteboardCanvas.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Add a “Create New Board” modal that lets the user enter a board name and select a template (Blank / Dots / Grid / Lines), matching the intent of the uploaded screenshots (template tiles + primary “Create Board” action). Creating the board navigates into that board with the selected template applied.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/board/CreateBoardDialog.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/BoardPage.tsx",
+          "frontend/src/api/useBoardSnapshot.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/board/CreateBoardDialog.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/BoardPage.tsx",
+          "frontend/src/api/useBoardSnapshot.ts"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add an in-board UI control to switch the board background between Blank/Dots/Grid/Lines (for example in the top bar overflow menu or a small settings dropdown). Changing it updates the board metadata so all collaborators converge to the new background.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/board/BoardTopBar.tsx",
+          "frontend/src/api/boardApi.ts",
+          "frontend/src/state/boardStore.ts",
+          "frontend/src/api/useBoardPollingSync.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/board/BoardTopBar.tsx",
+          "frontend/src/api/boardApi.ts",
+          "frontend/src/state/boardStore.ts",
+          "frontend/src/api/useBoardPollingSync.ts"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add a board background/template feature with the following modes: Blank, Dots, Grid, and Lines. The selected background must be stored as part of the board’s metadata and loaded for all collaborators when they open/join the board.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/state/boardStore.ts",
+          "frontend/src/api/useBoardSnapshot.ts",
+          "frontend/src/api/useBoardPollingSync.ts",
+          "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+          "frontend/src/api/boardApi.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/state/boardStore.ts",
+          "frontend/src/api/useBoardSnapshot.ts",
+          "frontend/src/api/useBoardPollingSync.ts",
+          "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+          "frontend/src/api/boardApi.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/api/boardApi.ts",
+    "frontend/src/api/useBoardPollingSync.ts",
+    "frontend/src/api/useBoardSnapshot.ts",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/canvas/render.ts",
+    "frontend/src/components/board/BoardTopBar.tsx",
+    "frontend/src/components/board/CreateBoardDialog.tsx",
+    "frontend/src/components/whiteboard/WhiteboardCanvas.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/pages/BoardPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/state/boardStore.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

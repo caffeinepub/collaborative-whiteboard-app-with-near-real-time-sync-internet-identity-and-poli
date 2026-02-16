@@ -1,2 +1,3 @@
-# collaborative-whiteboard-app-with-near-real-time-sync-internet-identity-and-poli
-Exported from Caffeine project: Collaborative whiteboard app with near-real-time sync, Internet Identity, and polished UI
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
